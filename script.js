@@ -1,4 +1,4 @@
-let calendarDiv = document.querySelector(".calendar");
+let calendarDiv = document.querySelector(".day-grid");
 
 console.log(calendarDiv);
 
