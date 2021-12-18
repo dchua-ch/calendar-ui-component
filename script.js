@@ -5,10 +5,16 @@ console.log(calendarDiv);
 
 // day object ids should be date
 let renderThis = '';
-for(let i = 1; i <= 31; i++)
+for(let i = 1; i <= 35; i++)
 {
-    let dayDiv = `<div class = \'day\'><p>${i}</p></div>`;
-    renderThis += dayDiv;
+    if (i <= 31)
+    {
+        renderThis += `<div class = \'day\'><p>${i}</p></div>`;
+    }
+    else
+    {
+        renderThis += `<div class = \'day\'></div>`;
+    }
 
 }
 console.log(renderThis);
