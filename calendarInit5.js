@@ -31,6 +31,7 @@ class MonthPage
     {
         this.year = year;
         this.month = month;
+        this.generateDays();
     }
 
     generateDays()
@@ -61,8 +62,78 @@ class MonthPage
 
 class Calendar
 {
+    //array of MonthPages
+    // each MonthPage are uniquely identified by year and month
+    pages = [];
     constructor()
-    {}
+    {
+        this.timeElapsed = Date.now();
+        this.today = new Date(this.timeElapsed);
+        this.month = this.today.getMonth();
+        this.year = this.today.getFullYear();
+        this.calendarDiv = document.querySelector(".calendar");
+      
+        this.pages.push(new MonthPage(this.year,this.month));
+
+
+    }
+
+    render()
+    {
+        console.log("Rendering calendar");
+        //console.log(this.day.name)
+        const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
+
+        // let calendarDiv = document.querySelector(".calendar");
+        // console.log(calendarDiv);
+
+        // day object ids should be date
+        let renderThis = '';
+
+        // render div with month, year and next/previous buttons
+        renderThis += `<h2 class = \'month-year\'>`;
+
+        // render previous button
+        renderThis += `<button type = \'button\' class = \'next-previous-button\' onclick = \'previousMonth()\'>\<</button>`;
+
+        renderThis += '<div>'
+
+        // render month 
+        renderThis += `<span class = \'month\'>${monthStrings[this.month]}</span>`;
+
+        // render year
+        renderThis += `<span class = \'span\'>${this.year}</span>`;
+
+        renderThis += '</div>'
+
+        // render next button
+        renderThis += `<button type = \'button\' class = \'next-previous-button\' onclick = \'nextMonth()\' >\></button></h2>`
+        
+        // render dayGrid
+        renderThis += '<div class = \'day-grid\'>';
+
+        // render days of week row
+        let dayStrings = ['Sun','Mon','Tue','Wed', 'Thu', 'Fri','Sat'];
+        dayStrings.forEach(day => {renderThis += `<div class = \'day-of-week\'>${day}</div>`})
+
+        // render monthPage
+        this.pages.forEach(page => 
+            {
+                if(page.month == this.month && page.year == this.year)
+                {
+                    let pageHTML = page.getHTML();
+                    // console.log(pageHTML);
+                    renderThis += pageHTML;
+                }
+            }
+            );
+
+        renderThis += '</div>';
+
+        this.calendarDiv.innerHTML = renderThis;
+
+    }
+
 }
 
 
@@ -72,5 +143,8 @@ const today = new Date(timeElapsed);
 let monthy = new MonthPage(today.getFullYear(),today.getMonth());
 monthy.generateDays();
 
-console.log(monthy.getHTML());
+// console.log(monthy.getHTML());
 // console.log(monthy.days[0].getDateString());
+
+let myCalendar = new Calendar();
+myCalendar.render();
