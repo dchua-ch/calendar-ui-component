@@ -17,7 +17,7 @@ export class Calendar
        
         this.timeElapsed = Date.now();
         this.today = new Date(this.timeElapsed);
-        this.day = new Day("hehe");
+        //this.day = new Day("hehe");
         //Numbers
         // this.currentMonth = this.today.getMonth();
         // this.currentDay = this.today.getDate();
@@ -33,7 +33,7 @@ export class Calendar
     render()
     {
         console.log("Rendering calendar");
-        console.log(this.day.name)
+        //console.log(this.day.name)
         const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
 
         let calendarDiv = document.querySelector(".calendar");
@@ -43,7 +43,7 @@ export class Calendar
         let renderThis = '';
 
         // render month and year
-        renderThis += `<h2 class = \'month-year\'> <span class = \'month\'>${monthStrings[this.today.getMonth()]}</span><span class = \'span\'>${this.today.getFullYear()}</span></h2>`;
+        renderThis += `<h2 class = \'month-year\'> <span class = \'month\'>${monthStrings[this.today.getMonth()]}</span><span class = \'span\'>${this.today.getFullYear()}</span></h2><button>Previous</button>`;
 
         // render dayGrid
         renderThis += '<div class = \'day-grid\'>';
