@@ -1,11 +1,13 @@
-// class Day
-// {
-//     constructor(date)
-//     {
-//         //this should be a javascript date object I guess
-//         this.date = date;
-//     }
-// }
+class Day
+{
+    constructor(date)
+    {
+        //this should be a javascript date object I guess
+        this.date = date;
+        this.highlighted = false;
+    }
+    
+}
 
 export class Calendar
 {
@@ -15,13 +17,13 @@ export class Calendar
        
         this.timeElapsed = Date.now();
         this.today = new Date(this.timeElapsed);
-
+        this.day = new Day("hehe");
         //Numbers
-        this.currentMonth = this.today.getMonth();
-        this.currentDay = this.today.getDate();
-        this.currentDayOfWeek = this.today.getDay();
-        this.currentYear = this.today.getFullYear();
-        this.currentNumberOfDays = getNumberOfDaysInMonth(this.currentMonth,this.currentYear);
+        // this.currentMonth = this.today.getMonth();
+        // this.currentDay = this.today.getDate();
+        // this.currentDayOfWeek = this.today.getDay();
+        // this.currentYear = this.today.getFullYear();
+        this.currentNumberOfDays = getNumberOfDaysInMonth(this.today.getMonth(),this.today.getFullYear());
         // this.currentNumberOfDays = new Date(this.currentYear,this.currentMonth + 1,0).getDate();
     
     }
@@ -29,7 +31,7 @@ export class Calendar
     render()
     {
         console.log("Rendering calendar");
-
+        console.log(this.day.name)
         const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
 
         let calendarDiv = document.querySelector(".calendar");
@@ -39,7 +41,7 @@ export class Calendar
         let renderThis = '';
 
         // render month and year
-        renderThis += `<h2 class = \'month-year\'> <span class = \'month\'>${monthStrings[this.currentMonth]}</span><span class = \'span\'>${this.currentYear}</span></h2>`;
+        renderThis += `<h2 class = \'month-year\'> <span class = \'month\'>${monthStrings[this.today.getMonth()]}</span><span class = \'span\'>${this.today.getFullYear()}</span></h2>`;
 
         // render dayGrid
         renderThis += '<div class = \'day-grid\'>';
@@ -47,7 +49,7 @@ export class Calendar
         // render days of week row
         let dayStrings = ['Sun','Mon','Tue','Wed', 'Thu', 'Fri','Sat'];
         dayStrings.forEach(day => {renderThis += `<div class = \'day-of-week\'>${day}</div>`})
-
+        console.log(this.currentNumberOfDays);
         for(let i = 1; i <= 35; i++)
         {
             if (i <= this.currentNumberOfDays)
