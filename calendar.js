@@ -25,6 +25,8 @@ export class Calendar
         // this.currentYear = this.today.getFullYear();
         this.currentNumberOfDays = getNumberOfDaysInMonth(this.today.getMonth(),this.today.getFullYear());
         // this.currentNumberOfDays = new Date(this.currentYear,this.currentMonth + 1,0).getDate();
+
+        this.days = [];
     
     }
 
