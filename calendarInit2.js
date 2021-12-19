@@ -27,11 +27,17 @@ class Calendar
         // this.currentNumberOfDays = getNumberOfDaysInMonth(this.currentMonth,this.currentYear );
         // this.currentNumberOfDays = this.getNumberOfDaysInMonth();
         this.updateNumberOfDaysInMonth();
+        this.getLastDateOfPreviousMonth();
 
         this.calendarDiv = document.querySelector(".calendar");
        
 
 
+    }
+
+    getLastDateOfPreviousMonth()
+    {
+        this.lastDateOfPreviousMonth = new Date(this.currentYear,this.currentMonth,0,0,0,0).getDate();
     }
 
     getFirstDayOfMonth()
@@ -124,6 +130,7 @@ class Calendar
         console.log(this.currentNumberOfDays);
         console.log(this.currentDayOfWeek);
         console.log(this.monthFirstDayOfWeek);
+        console.log(this.lastDateOfPreviousMonth);
         let dayCount = 0;
         for(let i = 1; i <= 35; i++)
         {
