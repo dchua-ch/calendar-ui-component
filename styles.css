@@ -27,12 +27,14 @@ body {
     padding-top:0.2em;
     padding-bottom:0.2em;
 }
-.month
+.month-year
 {
-    grid-row-start:1;
-    grid-column: span 7;
     text-align:center;
     padding:1em;
+}
+.month-year > span
+{
+    margin: 1em;
 }
 
 .day
