@@ -1,8 +1,9 @@
 # Calendar UI Component
 
 ## Objectives
-Create a responsive, clickable calendar UI component
+Create a responsive, clickable calendar UI component.
 
+Check out latest stable version [here](https://dchua-ch.github.io/calendar-ui-component/)!
 ### To-dos 
 Last updated: 19/12/2021
 1. Implement method to highlight days and then submit highlighted days as a collection of date strings.
