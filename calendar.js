@@ -1,24 +1,80 @@
-class Day
-{
-    constructor(date)
-    {
-        this.date = date;
-    }
-}
+// class Day
+// {
+//     constructor(date)
+//     {
+//         //this should be a javascript date object I guess
+//         this.date = date;
+//     }
+// }
 
-class Calendar
+export class Calendar
 {
+
     constructor()
     {
-        days = [];
+        console.log('executing constructor');
         this.timeElapsed = Date.now();
-        this.today = new Date(timeElapsed);
+        this.today = new Date(this.timeElapsed);
 
         //Numbers
-        this.currentMonth = today.getMonth();
-        this.currentDay = today.getDate();
-        this.currentYear = today.getFullYear();
+        this.currentMonth = this.today.getMonth();
+        this.currentDay = this.today.getDate();
+        this.currentDayOfWeek = this.today.getDay();
+        this.currentYear = this.today.getFullYear();
+        this.currentNumberOfDays = getNumberOfDaysInMonth(this.currentMonth,this.currentYear);
+        // this.currentNumberOfDays = new Date(this.currentYear,this.currentMonth + 1,0).getDate();
+    
+    }
+
+    render()
+    {
+        console.log("Rendering calendar");
+
+        const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
+
+        let calendarDiv = document.querySelector(".calendar");
+        // console.log(calendarDiv);
+
+        // day object ids should be date
+        let renderThis = '';
+
+        // render month and year
+        renderThis += `<h2 class = \'month-year\'> <span class = \'month\'>${monthStrings[this.currentMonth]}</span><span class = \'span\'>${this.currentYear}</span></h2>`;
+
+        // render dayGrid
+        renderThis += '<div class = \'day-grid\'>';
+
+        // render days of week row
+        let dayStrings = ['Sun','Mon','Tue','Wed', 'Thu', 'Fri','Sat'];
+        dayStrings.forEach(day => {renderThis += `<div class = \'day-of-week\'>${day}</div>`})
+
+        for(let i = 1; i <= 35; i++)
+        {
+            if (i <= this.currentNumberOfDays)
+            {
+                renderThis += `<div class = \'day\'><p>${i}</p></div>`;
+            }
+            else
+            {
+                renderThis += `<div class = \'day\'></div>`;
+            }
+
+        }
+
+        renderThis += '</div>';
+        // console.log(renderThis);
+        calendarDiv.innerHTML += renderThis;
     }
     
 
+}
+
+export function getNumberOfDaysInMonth(month,year)
+{
+    //day 0 is last day of previous month
+    // to find number of days in month, get last day of (month + 1) XD
+
+    // e.g. to find number of days in january 2021, create a new date object
+    // corresponding to february 2021 and get last day of previous month
+    return new Date(year,month + 1,0).getDate(); 
 }
