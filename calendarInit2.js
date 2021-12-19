@@ -23,6 +23,7 @@ class Calendar
         this.currentDay = this.today.getDate();
         this.currentDayOfWeek = this.today.getDay();
         this.currentYear = this.today.getFullYear();
+        this.getFirstDayOfMonth();
         // this.currentNumberOfDays = getNumberOfDaysInMonth(this.currentMonth,this.currentYear );
         // this.currentNumberOfDays = this.getNumberOfDaysInMonth();
         this.updateNumberOfDaysInMonth();
@@ -31,6 +32,11 @@ class Calendar
        
 
 
+    }
+
+    getFirstDayOfMonth()
+    {
+        this.monthFirstDayOfWeek = new Date(this.currentYear,this.currentMonth,1,0,0,0).getDay();
     }
 
     updateNumberOfDaysInMonth()
@@ -53,6 +59,7 @@ class Calendar
         }
         console.log(`after: ${this.currentMonth}`)
         this.updateNumberOfDaysInMonth();
+        this.getFirstDayOfMonth();
         this.render();
     }
 
@@ -72,6 +79,7 @@ class Calendar
      
         console.log(`after: ${this.currentMonth}`)
         this.updateNumberOfDaysInMonth();
+        this.getFirstDayOfMonth();
         this.render();
     }
 
@@ -114,16 +122,32 @@ class Calendar
         let dayStrings = ['Sun','Mon','Tue','Wed', 'Thu', 'Fri','Sat'];
         dayStrings.forEach(day => {renderThis += `<div class = \'day-of-week\'>${day}</div>`})
         console.log(this.currentNumberOfDays);
+        console.log(this.currentDayOfWeek);
+        console.log(this.monthFirstDayOfWeek);
+        let dayCount = 0;
         for(let i = 1; i <= 35; i++)
         {
-            if (i <= this.currentNumberOfDays)
+            
+            if (i >= this.monthFirstDayOfWeek + 1 && i <= this.monthFirstDayOfWeek +  this.currentNumberOfDays)
             {
-                renderThis += `<div class = \'day\'><p>${i}</p></div>`;
+                dayCount++;
+                renderThis += `<div class = \'day\'><p>${dayCount}</p></div>`;
             }
             else
             {
                 renderThis += `<div class = \'day\'></div>`;
             }
+
+
+            
+            // if(i <= this.currentNumberOfDays)
+            // {
+            //     renderThis += `<div class = \'day\'><p>${i}</p></div>`;
+            // }
+            // else
+            // {
+            //     renderThis += `<div class = \'day\'></div>`;
+            // }
 
         }
 
