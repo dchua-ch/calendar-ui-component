@@ -39,7 +39,7 @@ body {
 }
 .month-year
 {
-    width: 100%;
+
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -48,12 +48,13 @@ body {
     padding:1em;
     background-color:rgb(26, 66, 139);
     width: 80%;
+    
 }
 
 
 .month-year > div> span
 {
-    margin: 1em;
+    margin: 0.5em;
     /* display:inline-block; */
     color:white;
     
@@ -64,7 +65,7 @@ body {
 {
     margin-bottom:0;
     display:block;
-    height:100%em;
+    height:100%;
     border:none;
     background-color: rgb(26, 66, 139);
     color:white;
