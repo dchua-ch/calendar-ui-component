@@ -12,7 +12,7 @@ export class Calendar
 
     constructor()
     {
-        console.log('executing constructor');
+       
         this.timeElapsed = Date.now();
         this.today = new Date(this.timeElapsed);
 
@@ -69,7 +69,7 @@ export class Calendar
 
 }
 
-export function getNumberOfDaysInMonth(month,year)
+function getNumberOfDaysInMonth(month,year)
 {
     //day 0 is last day of previous month
     // to find number of days in month, get last day of (month + 1) XD
