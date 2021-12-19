@@ -7,7 +7,7 @@ let calendarDiv = document.querySelector(".calendar");
 let renderThis = '';
 
 // render month and year
-renderThis += '<h2 class = \'month\'>January</h2>';
+renderThis += '<h2 class = \'month-year\'> <span class = \'month\'>January</span><span class = \'span\'>2021</span></h2>';
 
 // render dayGrid
 renderThis += '<div class = \'day-grid\'>';
