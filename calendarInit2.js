@@ -9,7 +9,7 @@ class Day
     
 }
 
-export class Calendar
+class Calendar
 {
 
     constructor()
@@ -26,6 +26,8 @@ export class Calendar
         // this.currentNumberOfDays = getNumberOfDaysInMonth(this.currentMonth,this.currentYear );
         // this.currentNumberOfDays = this.getNumberOfDaysInMonth();
         this.updateNumberOfDaysInMonth();
+
+        this.calendarDiv = document.querySelector(".calendar");
        
 
 
@@ -38,14 +40,37 @@ export class Calendar
 
     incrementMonth()
     {
-        this.currentMonth += 1;
+        this.calendarDiv.innerHTML = '';
+        console.log(`before: ${this.currentMonth}`)
+        if (this.currentMonth == 11)
+        {
+            this.currentMonth = 0;
+            this.currentYear += 1;
+        }
+        else
+        {
+            this.currentMonth += 1;
+        }
+        console.log(`after: ${this.currentMonth}`)
         this.updateNumberOfDaysInMonth();
         this.render();
     }
 
     decrementMonth()
     {
-        this.currentMonth -= 1;
+        this.calendarDiv.innerHTML = '';
+        console.log(`before: ${this.currentMonth}`)
+        if (this.currentMonth == 0)
+        {
+            this.currentMonth = 11;
+            this.currentYear -= 1;
+        }
+        else
+        {
+            this.currentMonth -= 1;
+        }
+     
+        console.log(`after: ${this.currentMonth}`)
         this.updateNumberOfDaysInMonth();
         this.render();
     }
@@ -56,7 +81,7 @@ export class Calendar
         //console.log(this.day.name)
         const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
 
-        let calendarDiv = document.querySelector(".calendar");
+        // let calendarDiv = document.querySelector(".calendar");
         // console.log(calendarDiv);
 
         // day object ids should be date
@@ -104,27 +129,22 @@ export class Calendar
 
         renderThis += '</div>';
         // console.log(renderThis);
-        calendarDiv.innerHTML += renderThis;
+        this.calendarDiv.innerHTML += renderThis;
     }
     
 
 }
+let myCalendar = new Calendar();
+myCalendar.render();
 
-export function nextMonth()
+
+
+
+function nextMonth()
 {
     myCalendar.incrementMonth();
 }
-export function previousMonth()
+function previousMonth()
 {
     myCalendar.decrementMonth();
-}
-
-function getNumberOfDaysInMonth(month,year)
-{
-    //day 0 is last day of previous month
-    // to find number of days in month, get last day of (month + 1) XD
-
-    // e.g. to find number of days in january 2021, create a new date object
-    // corresponding to february 2021 and get last day of previous month
-    return new Date(year,month + 1,0).getDate(); 
 }
