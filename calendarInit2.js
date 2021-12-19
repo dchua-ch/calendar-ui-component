@@ -1,13 +1,13 @@
-class Day
-{
-    constructor(date)
-    {
-        //this should be a javascript date object I guess
-        this.date = date;
-        this.highlighted = false;
-    }
+// class Day
+// {
+//     constructor(date)
+//     {
+//         //this should be a javascript date object I guess
+//         this.date = date;
+//         this.highlighted = false;
+//     }
     
-}
+// }
 
 class Calendar
 {

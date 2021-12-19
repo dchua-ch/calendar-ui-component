@@ -1,0 +1,20 @@
+ Algorithm for generating monthpage
+    1) Find out which day of the week the first day of the month is on represented as an int
+    (.e.g 0,1,2... for mon, tue, wed)
+
+    2) If first day of month falls on monday, instantiate a new Day object corresponding to first day of
+    month
+
+    3) Else, find out last date of previous month, then work backwards to find out first date which 
+    appears on month page. Instantiate new Day object according to first date which appears on month page
+
+    4) Increment date object 34 times to generate a total of 35 Day objects and save it
+
+    tldr: find first date which appears on month page, instantiate Day object, then increment 34 times
+    to generate 35 day objects in total.
+
+
+Revised Algorithm
+    1) Instantiate a javascript Date object corresponding to the first day of the month
+    2) If first day of month falls on monday, instantiate a Day object and increment 34 times.
+    3) Else, decrement first day Date object until you reach first sunday of page
