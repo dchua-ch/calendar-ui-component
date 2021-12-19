@@ -1,6 +1,6 @@
-let calendarDiv = document.querySelector(".day-grid");
+let dayGrid = document.querySelector(".day-grid");
 
-console.log(calendarDiv);
+console.log(dayGrid);
 
 
 // day object ids should be date
@@ -18,4 +18,4 @@ for(let i = 1; i <= 35; i++)
 
 }
 console.log(renderThis);
-calendarDiv.innerHTML += renderThis;
+dayGrid.innerHTML += renderThis;
