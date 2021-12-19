@@ -1,15 +1,22 @@
-let dayGrid = document.querySelector(".day-grid");
+
 let calendarDiv = document.querySelector(".calendar");
-console.log(dayGrid);
+// console.log(calendarDiv);
 
 
 // day object ids should be date
 let renderThis = '';
 
+// render month and year
+renderThis += '<h2 class = \'month\'>January</h2>';
+
+// render dayGrid
+renderThis += '<div class = \'day-grid\'>';
+
+// render days of week row
 let dayStrings = ['Sun','Mon','Tue','Wed', 'Thu', 'Fri','Sat'];
 dayStrings.forEach(day => {renderThis += `<div class = \'day-of-week\'>${day}</div>`})
 
-// render month and year
+
 
 for(let i = 1; i <= 35; i++)
 {
@@ -23,5 +30,7 @@ for(let i = 1; i <= 35; i++)
     }
 
 }
-console.log(renderThis);
-dayGrid.innerHTML += renderThis;
+
+renderThis += '</div>';
+// console.log(renderThis);
+calendarDiv.innerHTML += renderThis;
