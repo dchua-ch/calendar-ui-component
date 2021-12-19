@@ -1,16 +1,25 @@
 class Day
 {
+    
     constructor(date)
     {
         //this should be a javascript date object I guess
         this.date = date;
         this.selected = false;
+        this.year = this.date.getFullYear();
+        this.month = this.date.getMonth();
+        this.day = this.date.getDate();
     }
     
+    getDateString()
+    {
+       
+        return `${this.day}/${this.month}/${this.year}`;
+    }
 
     getHTML()
     {
-        return  `<div class = \'day\' id = \'${this.date.toLocaleString()}\'><p>${this.date.getDate()}</p></div>`;
+        return  `<div class = \'day\' id = \'${this.getDateString()}\'><p>${this.date.getDate()}</p></div>`;
     }
 }
 
@@ -50,6 +59,12 @@ class MonthPage
     }
 }
 
+class Calendar
+{
+    constructor()
+    {}
+}
+
 
 const timeElapsed = Date.now();
 const today = new Date(timeElapsed);
@@ -58,3 +73,4 @@ let monthy = new MonthPage(today.getFullYear(),today.getMonth());
 monthy.generateDays();
 
 console.log(monthy.getHTML());
+// console.log(monthy.days[0].getDateString());
