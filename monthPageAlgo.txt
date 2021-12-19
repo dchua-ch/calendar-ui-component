@@ -18,3 +18,9 @@ Revised Algorithm
     1) Instantiate a javascript Date object corresponding to the first day of the month
     2) If first day of month falls on monday, instantiate a Day object and increment 34 times.
     3) Else, decrement first day Date object until you reach first sunday of page
+
+ // A collection of 35 Day objects and an associated month
+    // day-grid if a 5 x 7 grid of day objects
+    // col indices are 0,1,2,3,4,5,6
+    // row indices are 0,1,2,3,4
+    // master indices are 0,1,2,...,32,33,34

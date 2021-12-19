@@ -44,19 +44,23 @@ class MonthPage
     generateDays()
     {
         let firstOfMonth = new Date(this.year,this.month,1,0,0,0);
-        // console.log(firstOfMonth);
+        console.log(firstOfMonth);
         // console.log(firstOfMonth.getDay());
         if (firstOfMonth.getDay() != 0)
         {
             firstOfMonth.setDate(firstOfMonth.getDate() - firstOfMonth.getDay())
+            console.log(firstOfMonth);
         }
-        this.days.push(new Day(firstOfMonth));
+        console.log(firstOfMonth);
+        this.days.push(new Day(new Date(firstOfMonth)));
         for(let i = 0; i < 34; i++)
         {
             firstOfMonth.setDate(firstOfMonth.getDate() + 1);
             this.days.push(new Day(new Date(firstOfMonth)));
         }
-        // this.days.forEach(day => console.log(day.date));
+
+        console.log('print days')
+        this.days.forEach(day => console.log(day.date));
 
     }
 
