@@ -70,13 +70,45 @@ class Calendar
         this.timeElapsed = Date.now();
         this.today = new Date(this.timeElapsed);
         this.pageIndicator = new Date(this.today.getFullYear(),this.today.getMonth());
-        this.month = this.today.getMonth();
-        this.year = this.today.getFullYear();
         this.calendarDiv = document.querySelector(".calendar");
       
-        this.pages.push(new MonthPage(this.year,this.month));
+        this.pages.push(new MonthPage(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
 
 
+    }
+
+    createPage()
+    {
+        // Will only create a new page based on pageIndicator month and year
+        // if page doesn't exist
+        let pageExists = false;
+     
+        for(let i = 0; i < this.pages.length;i++)
+        {
+            if(this.pages[i].month == this.pageIndicator.getMonth() && this.pages[i].year == this.pageIndicator.getFullYear())
+            {
+                pageExists = true;
+            }
+
+        }
+        if( !pageExists)
+        {
+            this.pages.push(new MonthPage(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
+        }
+    }
+
+    incrementMonth()
+    {
+        this.pageIndicator.setMonth(this.pageIndicator.getMonth() + 1);
+        this.createPage();
+        this.render();
+    }
+
+    decrementMonth()
+    {
+        this.pageIndicator.setMonth(this.pageIndicator.getMonth() - 1);
+        this.createPage();
+        this.render();
     }
 
     render()
@@ -100,10 +132,10 @@ class Calendar
         renderThis += '<div>'
 
         // render month 
-        renderThis += `<span class = \'month\'>${monthStrings[this.month]}</span>`;
+        renderThis += `<span class = \'month\'>${monthStrings[this.pageIndicator.getMonth()]}</span>`;
 
         // render year
-        renderThis += `<span class = \'span\'>${this.year}</span>`;
+        renderThis += `<span class = \'span\'>${this.pageIndicator.getFullYear()}</span>`;
 
         renderThis += '</div>'
 
@@ -120,7 +152,7 @@ class Calendar
         // render monthPage
         this.pages.forEach(page => 
             {
-                if(page.month == this.month && page.year == this.year)
+                if(page.month == this.pageIndicator.getMonth() && page.year == this.pageIndicator.getFullYear())
                 {
                     let pageHTML = page.getHTML();
                     // console.log(pageHTML);
