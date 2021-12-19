@@ -2,10 +2,18 @@ const timeElapsed = Date.now();
 let today = new Date(timeElapsed);
 
 console.log('Date 2');
+
+let myDate = new Date(2021,0);
+console.log(myDate);
+for(let i = 0; i < 5;i++)
+{
+    myDate.setMonth(myDate.getMonth() - 1);
+    console.log(myDate);
+}
 // month index starts from 0, i.e. 0 is january, but day index starts from 1
 // goodness me
-let myDate = new Date(2021,0,1,0,0,0);
-console.log(myDate);
+// let myDate = new Date(2021,0,1,0,0,0);
+// console.log(myDate);
 // incrementDate();
 
 

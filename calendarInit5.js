@@ -69,6 +69,7 @@ class Calendar
     {
         this.timeElapsed = Date.now();
         this.today = new Date(this.timeElapsed);
+        this.pageIndicator = new Date(this.today.getFullYear(),this.today.getMonth());
         this.month = this.today.getMonth();
         this.year = this.today.getFullYear();
         this.calendarDiv = document.querySelector(".calendar");
@@ -81,14 +82,14 @@ class Calendar
     render()
     {
         console.log("Rendering calendar");
-        //console.log(this.day.name)
+
         const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
 
-        // let calendarDiv = document.querySelector(".calendar");
-        // console.log(calendarDiv);
-
-        // day object ids should be date
+ 
         let renderThis = '';
+
+        // clear html of calendar div
+        this.calendarDiv.innerHTML = renderThis;
 
         // render div with month, year and next/previous buttons
         renderThis += `<h2 class = \'month-year\'>`;
@@ -137,14 +138,24 @@ class Calendar
 }
 
 
-const timeElapsed = Date.now();
-const today = new Date(timeElapsed);
+// const timeElapsed = Date.now();
+// const today = new Date(timeElapsed);
 
-let monthy = new MonthPage(today.getFullYear(),today.getMonth());
-monthy.generateDays();
+// let monthy = new MonthPage(today.getFullYear(),today.getMonth());
+// monthy.generateDays();
 
 // console.log(monthy.getHTML());
 // console.log(monthy.days[0].getDateString());
 
 let myCalendar = new Calendar();
 myCalendar.render();
+
+
+function nextMonth()
+{
+    myCalendar.incrementMonth();
+}
+function previousMonth()
+{
+    myCalendar.decrementMonth();
+}
