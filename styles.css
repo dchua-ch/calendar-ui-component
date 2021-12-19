@@ -8,6 +8,15 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+.calendar
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .day-grid
 {
     display: grid;
@@ -36,11 +45,15 @@ body {
     align-items: center;
     text-align:center;
     padding:1em;
+    background-color:rgb(26, 66, 139);
+    width: 80%;
 }
 .month-year > div> span
 {
     margin: 1em;
     /* display:inline-block; */
+    color:white;
+    
 
 }
 
@@ -49,12 +62,13 @@ body {
     margin-bottom:0;
     display:block;
     height:100%em;
-    background-color:green;
     border:none;
+    background-color: rgb(26, 66, 139);
     color:white;
     padding:1em;
     border-radius:50%;
     font-weight: 900;
+    font-size:x-large;
 
 }
 
@@ -68,4 +82,9 @@ body {
     border-top: 1px solid black;
     border-left: 1px solid black;
 
+}
+
+.selected 
+{
+    background-color: rgba(26, 66, 139, 0.473);
 }

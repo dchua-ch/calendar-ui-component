@@ -9,17 +9,22 @@ class Day
         this.year = this.date.getFullYear();
         this.month = this.date.getMonth();
         this.day = this.date.getDate();
+        this.dateString = `${this.day}/${this.month + 1}/${this.year}`;
     }
     
     getDateString()
     {
        
-        return `${this.day}/${this.month}/${this.year}`;
+        return this.dateString;
     }
 
     getHTML()
     {
-        return  `<div class = \'day\' id = \'${this.getDateString()}\'><p>${this.date.getDate()}</p></div>`;
+        if(this.selected)
+        {
+            return `<div class = \'day selected\' id = \'${this.getDateString()}\' onclick = \'selectDay(\"${this.getDateString()}\")\'><p>${this.date.getDate()}</p></div>`;
+        }
+        return  `<div class = \'day\' id = \'${this.getDateString()}\' onclick = \'selectDay(\"${this.getDateString()}\")\'><p>${this.date.getDate()}</p></div>`;
     }
 }
 
@@ -73,6 +78,7 @@ class Calendar
         this.calendarDiv = document.querySelector(".calendar");
       
         this.pages.push(new MonthPage(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
+        this.setPage();
 
 
     }
@@ -101,6 +107,7 @@ class Calendar
     {
         this.pageIndicator.setMonth(this.pageIndicator.getMonth() + 1);
         this.createPage();
+        this.setPage()
         this.render();
     }
 
@@ -108,12 +115,43 @@ class Calendar
     {
         this.pageIndicator.setMonth(this.pageIndicator.getMonth() - 1);
         this.createPage();
+        this.setPage()
         this.render();
+    }
+
+    setPage()
+    {
+        this.pages.forEach(page => 
+        {
+            if(page.month == this.pageIndicator.getMonth() && page.year == this.pageIndicator.getFullYear())
+            {
+                this.page = page;
+            }
+        }
+        );
+
+    }
+
+    selectDay(dateString)
+    {
+        // console.log(this.page.days[0].dateString);
+        this.page.days.forEach( day =>
+            {
+                if(day.dateString == dateString)
+                {
+                    // console.log('day found!')
+                    day.selected = !day.selected;
+                }
+            }
+        )
+        this.render();
+        
+
     }
 
     render()
     {
-        console.log("Rendering calendar");
+        // console.log("Rendering calendar");
 
         const monthStrings = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December'];
 
@@ -169,20 +207,12 @@ class Calendar
 
 }
 
-
-// const timeElapsed = Date.now();
-// const today = new Date(timeElapsed);
-
-// let monthy = new MonthPage(today.getFullYear(),today.getMonth());
-// monthy.generateDays();
-
-// console.log(monthy.getHTML());
-// console.log(monthy.days[0].getDateString());
-
+//Script begins here
 let myCalendar = new Calendar();
 myCalendar.render();
 
 
+//click event handlers
 function nextMonth()
 {
     myCalendar.incrementMonth();
@@ -190,4 +220,10 @@ function nextMonth()
 function previousMonth()
 {
     myCalendar.decrementMonth();
+}
+
+function selectDay(dateString)
+{
+    // console.log(dateString)
+    myCalendar.selectDay(dateString);
 }
