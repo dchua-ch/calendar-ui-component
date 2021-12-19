@@ -15,6 +15,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin:2em;
 }
 
 .day-grid
@@ -48,6 +49,8 @@ body {
     background-color:rgb(26, 66, 139);
     width: 80%;
 }
+
+
 .month-year > div> span
 {
     margin: 1em;
