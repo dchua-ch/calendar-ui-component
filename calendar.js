@@ -28,9 +28,9 @@ class Day
     }
 }
 
-class MonthPage
+class Page
 {
-   
+    // Each page object will contain 35 Day objects
     days = [];
     constructor(year,month)
     {
@@ -67,8 +67,8 @@ class MonthPage
 
 class Calendar
 {
-    //array of MonthPages
-    // each MonthPage are uniquely identified by year and month
+    //array of Pages
+    // each Page are uniquely identified by year and month
     pages = [];
     constructor()
     {
@@ -77,7 +77,7 @@ class Calendar
         this.pageIndicator = new Date(this.today.getFullYear(),this.today.getMonth());
         this.calendarDiv = document.querySelector(".calendar");
       
-        this.pages.push(new MonthPage(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
+        this.pages.push(new Page(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
         this.setPage();
 
 
@@ -99,7 +99,7 @@ class Calendar
         }
         if( !pageExists)
         {
-            this.pages.push(new MonthPage(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
+            this.pages.push(new Page(this.pageIndicator.getFullYear(),this.pageIndicator.getMonth()));
         }
     }
 
@@ -224,6 +224,6 @@ function previousMonth()
 
 function selectDay(dateString)
 {
-    // console.log(dateString)
+    console.log(dateString)
     myCalendar.selectDay(dateString);
 }
