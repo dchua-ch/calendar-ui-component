@@ -68,7 +68,7 @@ class Page
 class Calendar
 {
     //array of Pages
-    // each Page are uniquely identified by year and month
+    // each Page are uniquely identified by year and month and contains 35 days
     pages = [];
     constructor()
     {
@@ -187,17 +187,7 @@ class Calendar
         let dayStrings = ['Sun','Mon','Tue','Wed', 'Thu', 'Fri','Sat'];
         dayStrings.forEach(day => {renderThis += `<div class = \'day-of-week\'>${day}</div>`})
 
-        // render monthPage
-        this.pages.forEach(page => 
-            {
-                if(page.month == this.pageIndicator.getMonth() && page.year == this.pageIndicator.getFullYear())
-                {
-                    let pageHTML = page.getHTML();
-                    // console.log(pageHTML);
-                    renderThis += pageHTML;
-                }
-            }
-            );
+        renderThis += this.page.getHTML();
 
         renderThis += '</div>';
 
